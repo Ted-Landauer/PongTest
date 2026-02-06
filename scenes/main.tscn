@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://c4vskwh5utqrh"]
+
+[ext_resource type="Texture2D" uid="uid://mhoiqu7d4h1a" path="res://assets/pongBackground.png" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://bj8hbvwaaqo52" path="res://scripts/main.gd" id="2_sugp2"]
+[ext_resource type="Script" uid="uid://cpx6sktkocywc" path="res://scripts/player.gd" id="3_jyhfs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
+size = Vector2(20, 120)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
+size = Vector2(1152, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
+size = Vector2(1152, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
+size = Vector2(16, 648)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
+size = Vector2(16, 648)
+
+[node name="Main" type="Sprite2D" unique_id=1487922807]
+texture_filter = 1
+texture = ExtResource("1_o5qli")
+centered = false
+script = ExtResource("2_sugp2")
+
+[node name="Player" type="StaticBody2D" parent="." unique_id=459940707]
+position = Vector2(50, 324)
+script = ExtResource("3_jyhfs")
+
+[node name="ColorRect" type="ColorRect" parent="Player" unique_id=738976979]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -60.0
+offset_right = 20.0
+offset_bottom = 60.0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=529222884]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_0wfyh")
+
+[node name="CPU" type="StaticBody2D" parent="." unique_id=733917772]
+position = Vector2(1082, 324)
+
+[node name="ColorRect" type="ColorRect" parent="CPU" unique_id=1375630971]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -60.0
+offset_right = 20.0
+offset_bottom = 60.0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CPU" unique_id=345114366]
+position = Vector2(10, 0)
+shape = SubResource("RectangleShape2D_0wfyh")
+
+[node name="Ball" type="CharacterBody2D" parent="." unique_id=475859100]
+position = Vector2(576, 324)
+collision_mask = 3
+
+[node name="ColorRect" type="ColorRect" parent="Ball" unique_id=521577933]
+offset_right = 10.0
+offset_bottom = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball" unique_id=22897270]
+position = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_sugp2")
+
+[node name="Borders" type="StaticBody2D" parent="." unique_id=1105052386]
+collision_layer = 2
+
+[node name="Top" type="CollisionShape2D" parent="Borders" unique_id=1731737667]
+position = Vector2(576, -8)
+shape = SubResource("RectangleShape2D_o5qli")
+
+[node name="Bottom" type="CollisionShape2D" parent="Borders" unique_id=969867540]
+position = Vector2(576, 656)
+shape = SubResource("RectangleShape2D_jyhfs")
+
+[node name="ScoreLeft" type="Area2D" parent="." unique_id=1602590238]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreLeft" unique_id=988332768]
+position = Vector2(-8, 324)
+shape = SubResource("RectangleShape2D_tbgi4")
+
+[node name="ScoreRight" type="Area2D" parent="." unique_id=1080615369]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreRight" unique_id=337837224]
+position = Vector2(1160, 324)
+shape = SubResource("RectangleShape2D_tefeu")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=907759818]
+
+[node name="PlayerScore" type="Label" parent="HUD" unique_id=1652654597]
+offset_left = 456.0
+offset_top = 5.0
+offset_right = 506.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 48
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CPUScore" type="Label" parent="HUD" unique_id=955728244]
+offset_left = 648.0
+offset_top = 5.0
+offset_right = 698.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 48
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BallTimer" type="Timer" parent="." unique_id=1543557571]
+one_shot = true
+autostart = true
