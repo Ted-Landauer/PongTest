@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bj8hbvwaaqo52" path="res://scripts/main.gd" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://cpx6sktkocywc" path="res://scripts/player.gd" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://c230l5eaoguuc" path="res://scripts/ball.gd" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://dvfc2galyimhh" path="res://scripts/cpu.gd" id="4_tbgi4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
 size = Vector2(20, 120)
@@ -50,6 +51,7 @@ shape = SubResource("RectangleShape2D_0wfyh")
 
 [node name="CPU" type="StaticBody2D" parent="." unique_id=733917772]
 position = Vector2(1082, 324)
+script = ExtResource("4_tbgi4")
 
 [node name="ColorRect" type="ColorRect" parent="CPU" unique_id=1375630971]
 anchors_preset = 4
@@ -135,3 +137,5 @@ offset_left = 463.0
 offset_top = -8.0
 offset_right = 613.0
 offset_bottom = 2.0
+
+[connection signal="timeout" from="BallTimer" to="." method="_on_ball_timer_timeout"]

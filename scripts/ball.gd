@@ -23,6 +23,22 @@ func new_ball():
 	#Call to get a random direction
 	dir = random_direction()
 	
+	
+func _physics_process(delta: float) -> void:
+	var collision = move_and_collide(dir * speed * delta)
+	var collider
+	
+	if collision:
+		collider = collision.get_collider()
+		
+		# if ball hits paddle
+		if collider == $"../Player" or collider == $"../CPU":
+			speed += ACCEL
+			dir = dir.bounce(collision.get_normal())
+		# if ball hits wall
+		else:
+			dir = dir.bounce(collision.get_normal())
+	
 func random_direction():
 	var new_dir := Vector2()
 	new_dir.x = [1, -1].pick_random()
