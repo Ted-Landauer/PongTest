@@ -10,11 +10,15 @@ var p_height : int
 func _ready() -> void:
 	#set the values declared above
 	win_height = get_viewport_rect().size.y
-	p_height - $ColorRect.get_size().y
+	p_height = $ColorRect.get_size().y
+	
+	print("P height = " + str(p_height))
+	print("window height = " + str(win_height))
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	#print("P height / 2 = " + str(p_height / 2))
 	
 	#accept player input and move accordingly
 	if Input.is_action_pressed("ui_up"):
@@ -23,7 +27,5 @@ func _process(delta: float) -> void:
 		position.y += get_parent().PADDLE_SPEED * delta
 		
 	# limit paddle movement to the window
-	## do a test print for the x and y values listed in the clamp function.
-	### hopefully makes it easier to understand why we chose those numbers
 	position.y = clamp(position.y, p_height / 2, win_height - p_height / 2)
 		

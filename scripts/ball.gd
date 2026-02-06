@@ -1,8 +1,13 @@
 extends CharacterBody2D
 
 var win_size : Vector2
+
+#Ball start speed
 const START_SPEED : int = 500
+
+# Ball acceleration
 const ACCEL : int = 50
+
 var speed : int
 var dir : Vector2
 
@@ -10,11 +15,12 @@ func _ready():
 	win_size = get_viewport_rect().size
 	
 func new_ball():
-	#randomize
+	#randomize ball starting direction and position
 	position.x = win_size.x / 2
 	position.y = randi_range(200, win_size.y - 200)
 	speed = START_SPEED
 	
+	#Call to get a random direction
 	dir = random_direction()
 	
 func random_direction():

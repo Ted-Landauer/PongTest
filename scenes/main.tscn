@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://mhoiqu7d4h1a" path="res://assets/pongBackground.png" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://bj8hbvwaaqo52" path="res://scripts/main.gd" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://cpx6sktkocywc" path="res://scripts/player.gd" id="3_jyhfs"]
+[ext_resource type="Script" uid="uid://c230l5eaoguuc" path="res://scripts/ball.gd" id="4_jyhfs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
 size = Vector2(20, 120)
@@ -30,6 +31,7 @@ script = ExtResource("2_sugp2")
 
 [node name="Player" type="StaticBody2D" parent="." unique_id=459940707]
 position = Vector2(50, 324)
+collision_mask = 2
 script = ExtResource("3_jyhfs")
 
 [node name="ColorRect" type="ColorRect" parent="Player" unique_id=738976979]
@@ -66,6 +68,7 @@ shape = SubResource("RectangleShape2D_0wfyh")
 [node name="Ball" type="CharacterBody2D" parent="." unique_id=475859100]
 position = Vector2(576, 324)
 collision_mask = 3
+script = ExtResource("4_jyhfs")
 
 [node name="ColorRect" type="ColorRect" parent="Ball" unique_id=521577933]
 offset_right = 10.0
@@ -123,3 +126,12 @@ vertical_alignment = 1
 [node name="BallTimer" type="Timer" parent="." unique_id=1543557571]
 one_shot = true
 autostart = true
+
+[node name="TestBody" type="StaticBody2D" parent="." unique_id=1719528677]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="TestBody" unique_id=131957641]
+offset_left = 463.0
+offset_top = -8.0
+offset_right = 613.0
+offset_bottom = 2.0
