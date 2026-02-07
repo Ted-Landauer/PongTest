@@ -5,6 +5,10 @@
 [ext_resource type="Script" uid="uid://cpx6sktkocywc" path="res://scripts/player.gd" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://c230l5eaoguuc" path="res://scripts/ball.gd" id="4_jyhfs"]
 [ext_resource type="Script" uid="uid://dvfc2galyimhh" path="res://scripts/cpu.gd" id="4_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://dh5wibjmnq7pv" path="res://assets/newGameButton.png" id="6_85g3d"]
+[ext_resource type="Script" uid="uid://c84bqn4sv18n5" path="res://scripts/new_game_button.gd" id="7_choun"]
+[ext_resource type="Texture2D" uid="uid://bd1j2kwxv0esl" path="res://assets/exitGameButton.png" id="8_ya4ey"]
+[ext_resource type="Script" uid="uid://gfawre37besm" path="res://scripts/exit_game_button.gd" id="9_eb6dy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
 size = Vector2(20, 120)
@@ -138,6 +142,64 @@ offset_top = -8.0
 offset_right = 613.0
 offset_bottom = 2.0
 
+[node name="GameOver" type="CanvasLayer" parent="." unique_id=174238614]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver" unique_id=10644668]
+offset_left = 121.0
+offset_top = 72.0
+offset_right = 1028.0
+offset_bottom = 444.0
+color = Color(0.0013967262, 0.0013967262, 0.001396726, 1)
+
+[node name="GameOverScreen" type="Label" parent="GameOver" unique_id=173120349]
+visibility_layer = 2
+z_index = 1
+offset_left = 384.0
+offset_top = 86.0
+offset_right = 750.0
+offset_bottom = 174.0
+theme_override_font_sizes/font_size = 64
+text = "GAME OVER"
+
+[node name="WinnerMessage" type="Label" parent="GameOver" unique_id=2012239183]
+visibility_layer = 2
+offset_left = 384.0
+offset_top = 226.0
+offset_right = 424.0
+offset_bottom = 314.0
+theme_override_font_sizes/font_size = 64
+
+[node name="NewGameButton" type="Button" parent="GameOver" unique_id=713825565]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -152.0
+offset_top = -10.0
+offset_right = -59.0
+offset_bottom = 37.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "New Game"
+icon = ExtResource("6_85g3d")
+flat = true
+icon_alignment = 1
+script = ExtResource("7_choun")
+
+[node name="ExitGameButton" type="Button" parent="GameOver" unique_id=963184759]
+offset_left = 648.0
+offset_top = 314.0
+offset_right = 743.0
+offset_bottom = 362.0
+text = "Exit Game"
+icon = ExtResource("8_ya4ey")
+icon_alignment = 1
+script = ExtResource("9_eb6dy")
+
 [connection signal="body_entered" from="ScoreLeft" to="." method="_on_score_left_body_entered"]
 [connection signal="body_entered" from="ScoreRight" to="." method="_on_score_right_body_entered"]
 [connection signal="timeout" from="BallTimer" to="." method="_on_ball_timer_timeout"]
+[connection signal="pressed" from="GameOver/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="GameOver/ExitGameButton" to="." method="_on_exit_game_button_pressed"]
